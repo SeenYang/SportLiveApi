@@ -23,16 +23,14 @@ namespace SportLiveApi
         {
             // IoC
             services.RegisterServices(Configuration);
+            // Swagger
+            services.AddSwaggerGen();
+            services.AddControllers();
             services.AddDbContext<SportLiveDbContext>(options =>
-                    options.UseInMemoryDatabase("InMemoryDB")
+                    options.UseInMemoryDatabase(databaseName: "InMemoryDB")
                 // AppSettings.json can hold multiple env config, and put parameter store/secret manager for higher security concern.
                 // options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
-
-            // Swagger
-            services.AddSwaggerGen();
-            
-            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -23,6 +23,7 @@
           <e p="DIRegistration.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
+          <e p="DataGenerator.cs" t="Include" />
           <e p="EventBase.cs" t="Include" />
           <e p="EventSubTypeEnum.cs" t="Include" />
           <e p="EventTypeEnum.cs" t="Include" />

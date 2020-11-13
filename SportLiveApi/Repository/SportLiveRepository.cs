@@ -39,7 +39,7 @@ namespace SportLiveApi.Repository
             _context.SaveChanges();
         }
 
-        public async Task<List<Player>> GetPlayerByTeamId(Guid temaId)
+        public async Task<List<Player>> GetPlayerByTeamId(Guid teamId)
         {
             return await _context.Players.ToListAsync();
         }
