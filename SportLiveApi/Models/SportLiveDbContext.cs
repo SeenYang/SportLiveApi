@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace SportLiveApi.Models.Entities
+namespace SportLiveApi.Models
 {
     public class SportLiveDbContext : DbContext
     {
@@ -27,13 +27,22 @@ namespace SportLiveApi.Models.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Player>(entity =>
-            {
-                entity.HasOne(d => d.PlayerToTeamNavigation)
-                    .WithMany(p => p.Player)
-                    .HasForeignKey(d => d.TeamId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
-            });
+            var teamId1 = Guid.NewGuid();
+            modelBuilder.Entity<Player>().HasData(
+                new List<Player>
+                {
+                    new Player
+                    {
+                        Id = Guid.NewGuid(),
+                        FirstName = "First1",
+                        LastName = "Last1",
+                        Nickname = "Smart player",
+                        Number = 23,
+                        TeamId = teamId1
+                    }
+                }
+            );
+            base.OnModelCreating(modelBuilder);   
         }
     }
 
@@ -44,10 +53,7 @@ namespace SportLiveApi.Models.Entities
             using var context = new SportLiveDbContext(
                 serviceProvider.GetRequiredService<DbContextOptions<SportLiveDbContext>>());
             // Look for any board games.
-            if (context.Players.Any())
-            {
-                return; // Data was already seeded
-            }
+            if (context.Players.Any()) return; // Data was already seeded
 
             context.Players.AddRange(new List<Player>());
 

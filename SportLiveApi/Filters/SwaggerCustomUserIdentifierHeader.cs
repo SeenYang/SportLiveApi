@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.OpenApi.Models;
-using Microsoft.VisualBasic;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace SportLiveApi.Filters
@@ -13,10 +12,7 @@ namespace SportLiveApi.Filters
             var authorizeAttributes = context.MethodInfo.DeclaringType?.GetCustomAttributes(true)
                 .Union(context.MethodInfo.GetCustomAttributes(true));
 
-            if (!authorizeAttributes.Any())
-            {
-                return;
-            }
+            if (!authorizeAttributes.Any()) return;
 
             operation.Parameters ??= new List<OpenApiParameter>();
 

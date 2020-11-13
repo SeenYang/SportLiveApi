@@ -1,6 +1,5 @@
 C:\Users\Yang\Desktop\SportLiveApi\SportLiveApi\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\Yang\Desktop\SportLiveApi\SportLiveApi\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\Yang\Desktop\SportLiveApi\SportLiveApi\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\Yang\Desktop\SportLiveApi\SportLiveApi\bin\Debug\netcoreapp3.1\SportLiveApi.exe
 C:\Users\Yang\Desktop\SportLiveApi\SportLiveApi\bin\Debug\netcoreapp3.1\SportLiveApi.deps.json
 C:\Users\Yang\Desktop\SportLiveApi\SportLiveApi\bin\Debug\netcoreapp3.1\SportLiveApi.runtimeconfig.json
@@ -42,3 +41,4 @@ C:\Users\Yang\Desktop\SportLiveApi\SportLiveApi\obj\Debug\netcoreapp3.1\staticwe
 C:\Users\Yang\Desktop\SportLiveApi\SportLiveApi\obj\Debug\netcoreapp3.1\SportLiveApi.dll
 C:\Users\Yang\Desktop\SportLiveApi\SportLiveApi\obj\Debug\netcoreapp3.1\SportLiveApi.pdb
 C:\Users\Yang\Desktop\SportLiveApi\SportLiveApi\obj\Debug\netcoreapp3.1\SportLiveApi.genruntimeconfig.cache
+C:\Users\Yang\Desktop\SportLiveApi\SportLiveApi\obj\Debug\netcoreapp3.1\scopedcss\bundle\SportLiveApi.styles.css

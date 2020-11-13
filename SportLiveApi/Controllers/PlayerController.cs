@@ -1,26 +1,34 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SportLiveApi.Models.Entities;
+using SportLiveApi.Models;
+using SportLiveApi.Repository;
 
 namespace SportLiveApi.Controllers
 {
     [ApiController]
     [Route("[controller]s")]
-    public class Player : ControllerBase
+    public class PlayerController : ControllerBase
     {
-        private SportLiveDbContext _context;
+        private ISportLiveRepository _repo;
 
-        public Player(SportLiveDbContext context)
+        public PlayerController(ISportLiveRepository repo)
         {
-            _context = context;
+            _repo = repo;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var result = await _context.Players.ToListAsync();
+            var result = await _repo.GetPlayerByTeamId(Guid.NewGuid());
+
+            if (result.Count == 0)
+            {
+                return NotFound("No Player found in this team.");
+            }
+
             return Ok(result);
         }
     }

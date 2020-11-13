@@ -1,4 +1,4 @@
-namespace SportLiveApi.Models.Entities
+namespace SportLiveApi.Models
 {
     public enum EventTypeEnum
     {

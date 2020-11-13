@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SportLiveApi.IoC;
-using SportLiveApi.Models.Entities;
+using SportLiveApi.Models;
 
 namespace SportLiveApi
 {
@@ -31,38 +31,17 @@ namespace SportLiveApi
 
             // Swagger
             services.AddSwaggerGen();
-            // services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-            // services.AddSwaggerGen(options => { options.OperationFilter<SwaggerCustomUserIdentifierHeader>(); });
-
-
+            
             services.AddControllers();
-            // services.AddApiVersioning();
-            // services.AddVersionedApiExplorer(
-            //     options =>
-            //     {
-            //         // add the versioned api explorer, which also adds IApiVersionDescriptionProvider service
-            //         // note: the specified format code will format the version as "'v'major[.minor][-status]"
-            //         options.GroupNameFormat = "'v'VVV";
-            //
-            //         // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
-            //         // can also be used to control the format of the API version in route templates
-            //         options.SubstituteApiVersionInUrl = true;
-            //     });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
             app.UseHttpsRedirection();
 
             app.UseRouting();

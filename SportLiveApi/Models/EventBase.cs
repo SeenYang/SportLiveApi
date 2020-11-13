@@ -1,6 +1,6 @@
 using System;
 
-namespace SportLiveApi.Models.Entities
+namespace SportLiveApi.Models
 {
     public abstract class EventBase
     {

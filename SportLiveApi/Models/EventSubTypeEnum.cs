@@ -1,4 +1,4 @@
-namespace SportLiveApi.Models.Entities
+namespace SportLiveApi.Models
 {
     public enum EventSubTypeEnum
     {
@@ -7,6 +7,6 @@ namespace SportLiveApi.Models.Entities
         EndQuarter,
         EndGame,
         LongTimeout,
-        ShortTimeout,
+        ShortTimeout
     }
 }
