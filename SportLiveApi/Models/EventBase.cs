@@ -2,11 +2,14 @@ using System;
 
 namespace SportLiveApi.Models
 {
-    public abstract class EventBase
+    public class Event
     {
-        public Guid Guid { get; set; }
-        public abstract EventTypeEnum EventType { get; }
-        public abstract EventSubTypeEnum EventSubType { get; }
+        public Guid Id { get; set; }
+        public  EventTypeEnum EventType { get; set; }
+        public  EventSubTypeEnum EventSubType { get; set; }
         public DateTime TimeStamp { get; set; }
+        public Guid GameId { get; set; }
+        public Guid TeamId { get; set; }
+        public Guid? PlayerId { get; set; }
     }
 }
