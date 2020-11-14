@@ -19,7 +19,7 @@ namespace SportLiveApi.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var result = await _repo.GetPlayerByTeamId(Guid.NewGuid());
+            var result = await _repo.GetPlayersByTeamId(Guid.NewGuid());
 
             if (result.Count == 0)
             {

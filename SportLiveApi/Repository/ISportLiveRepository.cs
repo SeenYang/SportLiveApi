@@ -7,7 +7,7 @@ namespace SportLiveApi.Repository
 {
     public interface ISportLiveRepository
     {
-        Task<List<Player>> GetPlayerByTeamId(Guid teamId);
+        Task<List<Player>> GetPlayersByTeamId(Guid teamId);
 
     }
 }

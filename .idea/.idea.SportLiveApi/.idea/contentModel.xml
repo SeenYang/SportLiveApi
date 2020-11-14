@@ -27,6 +27,7 @@
           <e p="EventBase.cs" t="Include" />
           <e p="EventSubTypeEnum.cs" t="Include" />
           <e p="EventTypeEnum.cs" t="Include" />
+          <e p="Game.cs" t="Include" />
           <e p="GeneralEvent.cs" t="Include" />
           <e p="Player.cs" t="Include" />
           <e p="PlayerEnum.cs" t="Include" />

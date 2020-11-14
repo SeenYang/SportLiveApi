@@ -14,34 +14,38 @@ namespace SportLiveApi.Repository
         public SportLiveRepository(SportLiveDbContext context)
         {
             _context = context;
-            // SeedingInMemoryDB(_context);
         }
 
-        private void SeedingInMemoryDB(SportLiveDbContext context)
-        {
-            var teamId1 = Guid.NewGuid();
-            var teamId2 = Guid.NewGuid();
-            if (context.Players.FirstOrDefault() == null)
-            {
-                context.Players.AddRange(new List<Player>
-                {
-                    new Player
-                    {
-                        FirstName = "First1",
-                        LastName = "Last1",
-                        Nickname = "Smart player",
-                        Number = 23,
-                        TeamId = teamId1
-                    }
-                });
-            }
-
-            _context.SaveChanges();
-        }
-
-        public async Task<List<Player>> GetPlayerByTeamId(Guid teamId)
+        public async Task<List<Player>> GetPlayers()
         {
             return await _context.Players.ToListAsync();
+        }
+
+        public async Task<List<Player>> GetPlayersByTeamId(Guid teamId)
+        {
+            return await _context.Players.Where(p => p.TeamId == teamId).ToListAsync();
+        }
+
+        public async Task<Player> GetPlayerById(Guid playerId)
+        {
+            return await _context.Players.FirstOrDefaultAsync(p => p.Id == playerId);
+        }
+
+        public async Task<List<Team>> GetTeamsByGameId(Guid gameId)
+        {
+            var game = await _context.Games.FirstOrDefaultAsync(g => g.GameId == gameId);
+            if (game == null)
+            {
+                return null;
+            }
+
+            return await _context.Teams.Where(t => game.TeamIds.Contains(t.Id)).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Game>> GetGamesByDate(DateTime date)
+        {
+            var games = await _context.Games.Where(g => g.GameDate.Date == date.Date).ToListAsync();
+            return games;
         }
     }
 }

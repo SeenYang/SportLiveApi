@@ -23,14 +23,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="751c5ee9-e722-4ddc-85df-21bdd8400c42" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SportLiveApi/Models/DataGenerator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SportLiveApi/Models/Game.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportLiveApi/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportLiveApi/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportLiveApi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportLiveApi/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SportLiveApi/Controllers/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SportLiveApi/Controllers/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SportLiveApi/Models/SportLiveDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SportLiveApi/Models/SportLiveDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SportLiveApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SportLiveApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SportLiveApi/Repository/ISportLiveRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SportLiveApi/Repository/ISportLiveRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SportLiveApi/Repository/SportLiveRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SportLiveApi/Repository/SportLiveRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SportLiveApi/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SportLiveApi/Startup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,14 +63,16 @@
         <option value="$PROJECT_DIR$/SportLiveApi/Models/PlayerEnum.cs" />
         <option value="$PROJECT_DIR$/SportLiveApi/Models/Team.cs" />
         <option value="$PROJECT_DIR$/SportLiveApi/IoC/DIRegistration.cs" />
-        <option value="$PROJECT_DIR$/SportLiveApi/Repository/ISportLiveRepository.cs" />
         <option value="$PROJECT_DIR$/SportLiveApi/Startup.cs" />
-        <option value="$PROJECT_DIR$/SportLiveApi/Repository/SportLiveRepository.cs" />
         <option value="$PROJECT_DIR$/SportLiveApi/Program.cs" />
         <option value="$PROJECT_DIR$/SportLiveApi/Models/DataGeneratore.cs" />
         <option value="$PROJECT_DIR$/SportLiveApi/Models/DataGenerator.cs" />
+        <option value="$PROJECT_DIR$/SportLiveApi/Models/Games.cs" />
         <option value="$PROJECT_DIR$/SportLiveApi/Models/SportLiveDbContext.cs" />
+        <option value="$PROJECT_DIR$/SportLiveApi/Repository/ISportLiveRepository.cs" />
+        <option value="$PROJECT_DIR$/SportLiveApi/Models/Game.cs" />
         <option value="$PROJECT_DIR$/SportLiveApi/Controllers/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/SportLiveApi/Repository/SportLiveRepository.cs" />
       </list>
     </option>
   </component>
@@ -135,6 +136,7 @@
       <workItem from="1605225241754" duration="1559000" />
       <workItem from="1605246567448" duration="1395000" />
       <workItem from="1605301473245" duration="502000" />
+      <workItem from="1605325930521" duration="2868000" />
     </task>
     <servers />
   </component>
