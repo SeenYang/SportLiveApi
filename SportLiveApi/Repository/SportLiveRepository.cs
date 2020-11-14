@@ -33,13 +33,23 @@ namespace SportLiveApi.Repository
 
         public async Task<List<Team>> GetTeamsByGameId(Guid gameId)
         {
-            var game = await _context.Games.FirstOrDefaultAsync(g => g.GameId == gameId);
-            if (game == null)
+            var teamIds = await _context.Games.Where(g => g.GameId == gameId).Select(g => g.TeamId).ToListAsync();
+            if (teamIds.Count == 0)
             {
                 return null;
             }
 
-            return await _context.Teams.Where(t => game.TeamIds.Contains(t.Id)).ToListAsync();
+            var teams = new List<Team>();
+            foreach (var teamId in teamIds)
+            {
+                var team = await _context.Teams.FirstOrDefaultAsync(t => t.Id == teamId);
+                if (team != null)
+                {
+                    teams.Add(team);
+                }
+            }
+
+            return teams;
         }
 
         public async Task<List<Game>> GetGamesByDate(DateTime date)
