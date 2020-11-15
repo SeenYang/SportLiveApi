@@ -8,7 +8,7 @@ namespace SportLiveApi.Controllers
 {
     [ApiController]
     [Route("[controller]s")]
-    public class GameController: ControllerBase
+    public class GameController : ControllerBase
     {
         private ISportLiveRepository _repo;
 
@@ -16,7 +16,7 @@ namespace SportLiveApi.Controllers
         {
             _repo = repo;
         }
-        
+
         [HttpGet]
         [Route("GetTeamsByGameId/{gameId}")]
         public async Task<IActionResult> GetTeamsByGameId(Guid gameId)
@@ -29,7 +29,8 @@ namespace SportLiveApi.Controllers
             }
 
             return Ok(result);
-        }        
+        }
+
         [HttpGet]
         [Route("GetGamesByDate/{dateStr}")]
         public async Task<IActionResult> GetGamesByDate(string dateStr)
@@ -50,8 +51,19 @@ namespace SportLiveApi.Controllers
                 Console.WriteLine(e);
                 return BadRequest("Invalid date.");
             }
-
         }
 
+        [HttpGet]
+        [Route("GetGameById/{id}")]
+        public async Task<IActionResult> GetGameById(Guid id)
+        {
+            var result = await _repo.GetGamesById(id);
+            if (result == null)
+            {
+                return NotFound($"No game found of Id: {id}.");
+            }
+
+            return Ok(result);
+        }
     }
 }

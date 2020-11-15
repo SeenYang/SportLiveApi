@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SportLiveApi.Models;
+using SportLiveApi.Models.Dtos;
 
 namespace SportLiveApi.Repository
 {
@@ -21,9 +22,10 @@ namespace SportLiveApi.Repository
             return await _context.Players.ToListAsync();
         }
 
-        public async Task<List<Player>> GetPlayersByTeamId(Guid teamId)
+        public async Task<List<PlayerDto>> GetPlayersByTeamId(Guid teamId)
         {
-            return await _context.Players.Where(p => p.TeamId == teamId).ToListAsync();
+            var players = await _context.Players.Where(p => p.TeamId == teamId).Select(t => t.ToDto()).ToListAsync();
+            return players;
         }
 
         public async Task<Player> GetPlayerById(Guid playerId)
@@ -33,7 +35,10 @@ namespace SportLiveApi.Repository
 
         public async Task<List<Team>> GetTeamsByGameId(Guid gameId)
         {
-            var teamIds = await _context.Games.Where(g => g.GameId == gameId).Select(g => g.TeamId).ToListAsync();
+            var teamIds = await _context.Games
+                .Where(g => g.Id == gameId)
+                .Select(g => g.TeamId)
+                .ToListAsync();
             if (teamIds.Count == 0)
             {
                 return null;
@@ -52,10 +57,50 @@ namespace SportLiveApi.Repository
             return teams;
         }
 
-        public async Task<List<Game>> GetGamesByDate(DateTime date)
+        public async Task<List<GameDto>> GetGamesByDate(DateTime date)
         {
-            var games = await _context.Games.Where(g => g.GameDate.Date == date.Date).ToListAsync();
-            return games;
+            var games = await _context.Games
+                .Where(g => g.GameDate.Date == date.Date).ToListAsync();
+
+            var groupedGames = games.GroupBy(t => t.Id).ToList();
+            var gameDtos = groupedGames.Select(t => new GameDto
+            {
+                Id = t.Key,
+                Date = t.First().GameDate,
+                TeamIds = t.Select(tt => tt.TeamId).ToList()
+            }).ToList();
+
+            return gameDtos;
+        }
+
+        public async Task<GameDto> GetGamesById(Guid id)
+        {
+            // Get Game
+            var games = await _context.Games
+                .Where(g => g.Id == id).ToListAsync();
+
+            var groupedGames = games.GroupBy(t => t.Id).ToList();
+            var gameDto = groupedGames.Select(t => new GameDto
+            {
+                Id = t.Key,
+                Date = t.First().GameDate,
+                TeamIds = t.Select(tt => tt.TeamId).ToList()
+            }).FirstOrDefault();
+
+            if (gameDto == null)
+            {
+                return null;
+            }
+            
+            // Get Teams
+            var teams = await _context.Teams.Where(t => gameDto.TeamIds.Contains(t.Id)).ToListAsync();
+            gameDto.TeamNames = teams.Select(t => t.Name).ToList();
+            gameDto.Teams = teams.Select(t => t.ToDto()).ToList();
+
+            // Get Players
+            gameDto.Teams.ForEach(async t => { t.Players = await GetPlayersByTeamId(t.Id); });
+
+            return gameDto;
         }
 
         public async Task<List<Event>> GetEventsByGameId(Guid gameId)
