@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using SportLiveApi.Models;
 using SportLiveApi.Repository;
@@ -8,7 +9,7 @@ using SportLiveApi.Repository;
 namespace SportLiveApi.Controllers
 {
     [ApiController]
-    [Route("[controller]s")]
+    [Route("api/[controller]s")]
     public class EventController : ControllerBase
     {
         private ISportLiveRepository _repo;
@@ -19,7 +20,6 @@ namespace SportLiveApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetEventsByGameId/{gameId}")]
         public async Task<IActionResult> GetEventsByGameId(Guid gameId)
         {
             var result = await _repo.GetEventsByGameId(gameId);
@@ -61,7 +61,6 @@ namespace SportLiveApi.Controllers
         }
 
         [HttpPost]
-        [Route("AddEvent")]
         public async Task<IActionResult> AddEvent([FromBody] Event e)
         {
             var result = await _repo.AddEvent(e);

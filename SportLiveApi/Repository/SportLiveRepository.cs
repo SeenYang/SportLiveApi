@@ -59,6 +59,7 @@ namespace SportLiveApi.Repository
 
         public async Task<List<GameDto>> GetGamesByDate(DateTime date)
         {
+            var temp = _context.Games.ToList();
             var games = await _context.Games
                 .Where(g => g.GameDate.Date == date.Date).ToListAsync();
 
@@ -69,6 +70,13 @@ namespace SportLiveApi.Repository
                 Date = t.First().GameDate,
                 TeamIds = t.Select(tt => tt.TeamId).ToList()
             }).ToList();
+            
+            foreach (var gameDto in gameDtos)
+            {
+                var teams = await _context.Teams.Where(t => gameDto.TeamIds.Contains(t.Id)).ToListAsync();
+                gameDto.Teams = new List<TeamDto>();
+                gameDto.Teams.AddRange(teams.Select(t => t.ToDto()));
+            }
 
             return gameDtos;
         }

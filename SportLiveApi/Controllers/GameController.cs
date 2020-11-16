@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using SportLiveApi.Repository;
 
 namespace SportLiveApi.Controllers
 {
     [ApiController]
-    [Route("[controller]s")]
+    [Route("api/[controller]s")]
     public class GameController : ControllerBase
     {
         private ISportLiveRepository _repo;
